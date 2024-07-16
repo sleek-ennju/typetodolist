@@ -1,3 +1,4 @@
 import logo from "./Logo.svg";
+import clipboard from "./Clipboard.svg";
 
-export {logo} ;
+export {logo, clipboard} ;

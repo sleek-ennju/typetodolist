@@ -3,10 +3,10 @@ import Main from './main/Main';
 
 const Todo = () => {
   return (
-    <>
+    <div className='w-full min-h-dvh bg-base-600'>
         <Header />
         <Main />
-    </>
+    </div>
   )
 }
 
