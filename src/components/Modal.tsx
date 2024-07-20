@@ -9,8 +9,14 @@ import { modalProp, todo } from "../static/types";
 // images
 import { clipboard } from "../assets";
 
+// icons
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { toast } from "react-toastify";
+
+
 const Modal = ({handleCloseModal, handleCreateTask}: modalProp) => {
     const [userTask, setUserTask] = useState(""); //state storing value from input field
+    const [isLoading, setIsLoading] = useState(false);
 
     // helper functions
     const closeModal = ()=> {
@@ -18,6 +24,7 @@ const Modal = ({handleCloseModal, handleCreateTask}: modalProp) => {
     }
 
     const createTask = ()=> {
+        setIsLoading(true);
         // create new task data
         const newTask: todo = {
             id: Date.now(),
@@ -26,8 +33,20 @@ const Modal = ({handleCloseModal, handleCreateTask}: modalProp) => {
         };
 
         handleCreateTask((prev) => [...prev, newTask]);
-        handleCloseModal(prev => !prev);
+        setTimeout(()=>{
+            toast.success('Your task was created successfully!', {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+              });
+            setIsLoading(false);
+            handleCloseModal(prev => !prev);
+        }, 1000)
     } 
+    console.log("loading state: ", isLoading);
 
 
   return (
@@ -44,10 +63,9 @@ const Modal = ({handleCloseModal, handleCreateTask}: modalProp) => {
                     <Btn action={closeModal} className={"bg-base-500 border border-purple-dark hover:border-purple-light text-purple-dark hover:text-purple-light"}>
                         Cancel
                     </Btn>
-                    <Btn action={createTask} className={"bg-purple-dark hover:bg-purple-light text-white"}>
-                        Apply
+                    <Btn action={createTask} className={"bg-purple-dark hover:bg-purple-light text-white flex items-center justify-center"}>
+                        {isLoading ? <AiOutlineLoading3Quarters className="size-4 text-white animate-spin transition-all duration-300" /> : "Create"}
                     </Btn>
-
                 </div>
             </div>
       </div>
