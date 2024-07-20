@@ -1,9 +1,8 @@
 // components
-import IconBtn from "../../components/IconBtn";
-import Search from "../../components/Search";
+import { IconBtn, Modal, Search } from "../../components";
 
 // types
-import { todoList } from "../../static/types";
+import { todo } from "../../static/types";
 
 // images
 import { clipboard } from "../../assets";
@@ -14,15 +13,22 @@ import { useState } from "react";
 
 
 const Main = () => {
-  const [todoLists, setTodoLists] = useState<todoList[] | null>(null);
+  const [openModal, setOpenModal] = useState(false);
+  const [todoLists, setTodoLists] = useState<todo[]>([]);
+
+  console.log("todoLists: ", todoLists);
+
+ 
+  
+  
   return (
-    <main className="w-full h-full flex justify-center font-poppins">
-      <section className="w-[90%] max-w-[34rem]">
+    <main className="w-full min-h-[70dvh] flex justify-center font-poppins">
+      <section className="w-[90%] max-w-[34rem] flex flex-col">
 
         {/* search, create todo action container */}
         <div className="flex gap-1 transform -translate-y-1/2">
           <Search />
-          <IconBtn>
+          <IconBtn action={setOpenModal}>
             <FaPlus className="size-4 text-base-100" />
           </IconBtn>
         </div>
@@ -41,9 +47,9 @@ const Main = () => {
 
         {/* todo lists display container */}
         {
-          !todoLists ? (
+          todoLists.length === 0 ? (
             // empty todo list container
-            <div className="border-t h-full border-base-400 mt-6 flex flex-col justify-center items-center gap-6 rounded-t-md">
+            <div className="border-t border-base-400 mt-6 flex flex-col justify-center items-center flex-1 gap-6 rounded-t-md">
               <img src={clipboard} className="block max-w-full w-[2.5rem] sm:w-[3rem] md:w-[3.5rem] h-auto object-cover" alt="clipboard icon" />
               <div className="flex flex-col gap-1">
                 <p className="text-xs sm:text-sm text-center text-base-300 font-bold">You do not have any tasks registered yet</p>
@@ -57,6 +63,9 @@ const Main = () => {
           )
         }
       </section>
+
+      {openModal && (<Modal handleCloseModal={setOpenModal} handleCreateTask={setTodoLists} />)}
+      
     </main>
   )
 }
