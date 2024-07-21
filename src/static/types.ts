@@ -31,3 +31,7 @@ export type modalProp = {
     handleCloseModal: Dispatch<SetStateAction<boolean>>,
     handleCreateTask: Dispatch<SetStateAction<todo[]>>
 }
+
+export type filterProp = {
+    handleFilterEffect: Dispatch<SetStateAction<todo[]>>
+}

@@ -5,5 +5,6 @@ import Btn from "./Btn";
 import Task from "./Task";
 import CheckFalse from "./CheckFalse";
 import CheckTrue from "./CheckTrue";
+import Filter from "./Filter";
 
-export { IconBtn, Search, Modal, Btn, Task, CheckFalse, CheckTrue};
+export { IconBtn, Search, Modal, Btn, Task, CheckFalse, CheckTrue, Filter};

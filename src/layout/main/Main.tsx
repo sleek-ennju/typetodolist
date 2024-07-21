@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 // components
-import { IconBtn, Modal, Search, Task } from "../../components";
+import { Filter, IconBtn, Modal, Search, Task } from "../../components";
 
 // types
 import { todo } from "../../static/types";
@@ -25,10 +25,16 @@ const Main = () => {
 
         {/* search, create todo action container */}
         <div className="flex gap-1 transform -translate-y-1/2">
+          {/*search feature component  */}
           <Search />
+
+          {/*open modal component  */}
           <IconBtn action={setOpenModal}>
             <FaPlus className="size-4 text-base-100" />
           </IconBtn>
+
+          {/*filter feature component  */}
+          <Filter handleFilterEffect={setTodoLists} />
         </div>
         
         {/* todo list counts container */}
