@@ -5,6 +5,14 @@ export type todo = {
     content: string,
     state: boolean
 }
+
+export type task = {
+    id: string | number,
+    content: string,
+    state: boolean,
+    todoAction: Dispatch<SetStateAction<todo[]>>
+};
+
 export type iconButtonProp = {
     children: ReactNode,
     action: Dispatch<SetStateAction<boolean>>, // type for states

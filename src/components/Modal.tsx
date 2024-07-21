@@ -32,7 +32,12 @@ const Modal = ({handleCloseModal, handleCreateTask}: modalProp) => {
             state: false,
         };
 
-        handleCreateTask((prev) => [...prev, newTask]);
+        console.log("newTask: ",newTask);
+        // prolong propagation time for 500 milli seconds
+        setTimeout(()=>{
+            handleCreateTask((prev) => [...prev, newTask]);
+        }, 500);
+
         setTimeout(()=>{
             toast.success('Your task was created successfully!', {
                 position: "top-right",
@@ -44,9 +49,8 @@ const Modal = ({handleCloseModal, handleCreateTask}: modalProp) => {
               });
             setIsLoading(false);
             handleCloseModal(prev => !prev);
-        }, 1000)
+        }, 500)
     } 
-    console.log("loading state: ", isLoading);
 
 
   return (

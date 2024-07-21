@@ -1,5 +1,5 @@
 // components
-import { IconBtn, Modal, Search } from "../../components";
+import { IconBtn, Modal, Search, Task } from "../../components";
 
 // types
 import { todo } from "../../static/types";
@@ -15,10 +15,6 @@ import { useState } from "react";
 const Main = () => {
   const [openModal, setOpenModal] = useState(false);
   const [todoLists, setTodoLists] = useState<todo[]>([]);
-
-  
-
- 
   
   
   return (
@@ -57,8 +53,10 @@ const Main = () => {
               </div>
             </div>
           ) : (
-            <div className="">
-
+            <div className="mt-6 flex flex-col gap-2">
+              {todoLists.map(({id, content, state})=> (
+                <Task key={id} id={id} content={content} state={state} todoAction={setTodoLists} />
+              ))}
             </div>
           )
         }
