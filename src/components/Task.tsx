@@ -1,20 +1,20 @@
-// component
+import classNames from "classnames";
+
+// components
 import CheckFalse from "./CheckFalse";
+import CheckTrue from "./CheckTrue";
 
 // icon
 import { BsTrash3Fill } from "react-icons/bs";
 
 // type
 import { task } from "../static/types";
-import CheckTrue from "./CheckTrue";
-import classNames from "classnames";
 
 const Task = ({id, content, state, todoAction}: task) => {
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>)=> {
        const newState = e.target.checked;
        todoAction((prev) => prev.map(todo => todo.id === id ? {...todo, state: newState} : todo));
-       console.log("checkedTaskId: ", id);
     }
 
     const handleDelete = () => {
@@ -23,10 +23,10 @@ const Task = ({id, content, state, todoAction}: task) => {
 
   return (
     <div className="flex gap-2 sm:gap-3 md:gap-4 p-4 bg-base-500 border border-base-400 rounded-md">
-        <label htmlFor="check" className="group self-start cursor-pointer">
-            <input checked={state} onChange={handleChange} type="checkbox" id="check" hidden />
+        <label htmlFor={id} className="group self-start cursor-pointer">
+            <input checked={state} onChange={handleChange} type="checkbox" id={id} hidden />
             {
-                state ? (<CheckTrue /> ) : ( <CheckFalse /> )
+                state ? ( <CheckTrue /> ) : ( <CheckFalse /> )
             }
         </label>
         <p className={classNames(state ? "line-through text-base-300" : "text-base-100", "flex-1 text-sm md:text-base transition-all duration-300")}>{content}</p>

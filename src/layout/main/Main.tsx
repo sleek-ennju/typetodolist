@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 // components
 import { IconBtn, Modal, Search, Task } from "../../components";
 
@@ -9,12 +11,12 @@ import { clipboard } from "../../assets";
 
 // icons
 import { FaPlus } from "react-icons/fa6";
-import { useState } from "react";
 
 
 const Main = () => {
   const [openModal, setOpenModal] = useState(false);
   const [todoLists, setTodoLists] = useState<todo[]>([]);
+ 
   
   
   return (
@@ -37,7 +39,7 @@ const Main = () => {
           </div>
           <div className="flex items-center gap-1">
             <h3 className="text-xs sm:text-sm font-bold text-purple-light">Completed</h3>
-            <p className="text-xs sm:text-sm text-base-200 bg-base-400 rounded-full min-w-[1.2em] min-h-[1.2em] py-1 px-2 flex justify-center items-center">0</p>
+            <p className="text-xs sm:text-sm text-base-200 bg-base-400 rounded-full min-w-[1.2em] min-h-[1.2em] py-1 px-2 flex justify-center items-center">{todoLists.filter(todo => todo.state === true).length} of {todoLists.length}</p>
           </div>
         </div>
 

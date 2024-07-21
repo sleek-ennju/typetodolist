@@ -1,13 +1,13 @@
-import { Dispatch, ReactNode, SetStateAction } from "react";
+import { ComponentPropsWithoutRef, Dispatch, ReactNode, SetStateAction } from "react";
 
 export type todo = {
-    id: string | number,
+    id: string,
     content: string,
     state: boolean
 }
 
 export type task = {
-    id: string | number,
+    id: string,
     content: string,
     state: boolean,
     todoAction: Dispatch<SetStateAction<todo[]>>
@@ -17,11 +17,14 @@ export type iconButtonProp = {
     children: ReactNode,
     action: Dispatch<SetStateAction<boolean>>, // type for states
 };
+
+export type ButtonProps = ComponentPropsWithoutRef<'button'>;
+
 export type buttonProp = {
     children: ReactNode,
     action: ()=> void, // type for states
     className: string,
-};
+} & ButtonProps;
 
 
 export type modalProp = {

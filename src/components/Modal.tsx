@@ -14,6 +14,7 @@ import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { toast } from "react-toastify";
 
 
+
 const Modal = ({handleCloseModal, handleCreateTask}: modalProp) => {
     const [userTask, setUserTask] = useState(""); //state storing value from input field
     const [isLoading, setIsLoading] = useState(false);
@@ -27,12 +28,11 @@ const Modal = ({handleCloseModal, handleCreateTask}: modalProp) => {
         setIsLoading(true);
         // create new task data
         const newTask: todo = {
-            id: Date.now(),
+            id: Date.now().toString(),
             content: userTask,
             state: false,
         };
-
-        console.log("newTask: ",newTask);
+        
         // prolong propagation time for 500 milli seconds
         setTimeout(()=>{
             handleCreateTask((prev) => [...prev, newTask]);
@@ -62,12 +62,18 @@ const Modal = ({handleCloseModal, handleCreateTask}: modalProp) => {
             </div>
 
             <div className="w-full">
-                <input value={userTask} onChange={(e)=> setUserTask(e.target.value)} type="text" className="bg-transparent border border-base-300 rounded-md outline-none text-base-300 w-full placeholder:text-sm placeholder:text-base-300 p-1" placeholder="Enter new note.." />
+                <input 
+                    value={userTask} 
+                    onChange={(e)=> setUserTask(e.target.value)} 
+                    type="text" 
+                    className="bg-transparent border border-base-300 rounded-md outline-none text-base-300 w-full placeholder:text-sm placeholder:text-base-300 p-1" 
+                    placeholder="Enter new note.." 
+                />
                 <div className="flex justify-around flex-wrap gap-2 mt-4">
                     <Btn action={closeModal} className={"bg-base-500 border border-purple-dark hover:border-purple-light text-purple-dark hover:text-purple-light"}>
                         Cancel
                     </Btn>
-                    <Btn action={createTask} className={"bg-purple-dark hover:bg-purple-light text-white flex items-center justify-center"}>
+                    <Btn action={createTask} disabled={userTask === "" ? true : false} className={"bg-purple-dark hover:bg-purple-light text-white flex items-center justify-center disabled:cursor-not-allowed disabled:bg-opacity-40"}>
                         {isLoading ? <AiOutlineLoading3Quarters className="size-4 text-white animate-spin transition-all duration-300" /> : "Create"}
                     </Btn>
                 </div>
