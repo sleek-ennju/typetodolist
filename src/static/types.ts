@@ -33,5 +33,5 @@ export type modalProp = {
 }
 
 export type filterProp = {
-    handleFilterEffect: Dispatch<SetStateAction<todo[]>>
+    handleFilterEffect: Dispatch<SetStateAction<string>>
 }

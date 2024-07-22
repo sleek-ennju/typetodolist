@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 // components
 import { Filter, IconBtn, Modal, Search, Task } from "../../components";
@@ -16,6 +16,19 @@ import { FaPlus } from "react-icons/fa6";
 const Main = () => {
   const [openModal, setOpenModal] = useState(false);
   const [todoLists, setTodoLists] = useState<todo[]>([]);
+  const [todoListPreview, setTodoListsPreview] = useState<todo[]>([]);
+  const [filterValue, setFilterValue] = useState("all");
+
+  // filter effect
+  useEffect(()=>{
+      if(filterValue === "all"){
+        setTodoListsPreview(todoLists);
+      }else if(filterValue === "incomplete"){
+        setTodoListsPreview(todoLists.filter(todo => !todo.state))
+      }else if(filterValue === "complete"){
+        setTodoListsPreview(todoLists.filter(todo => todo.state))
+      }
+  },[todoLists, filterValue])
  
   
   
@@ -34,7 +47,7 @@ const Main = () => {
           </IconBtn>
 
           {/*filter feature component  */}
-          <Filter handleFilterEffect={setTodoLists} />
+          <Filter handleFilterEffect={setFilterValue} />
         </div>
         
         {/* todo list counts container */}
@@ -51,7 +64,7 @@ const Main = () => {
 
         {/* todo lists display container */}
         {
-          todoLists.length === 0 ? (
+          filterValue === "all" && todoListPreview.length === 0 ? (
             // empty todo list container
             <div className="border-t border-base-400 mt-6 flex flex-col justify-center items-center flex-1 gap-6 rounded-t-md">
               <img src={clipboard} className="block max-w-full w-[2.5rem] sm:w-[3rem] md:w-[3.5rem] h-auto object-cover" alt="clipboard icon" />
@@ -60,12 +73,30 @@ const Main = () => {
                 <p className="text-xs sm:text-sm text-center text-base-300 font-normal">Tap the cross icon to start creating your first task.</p>
               </div>
             </div>
-          ) : (
-            <div className="mt-6 flex flex-col gap-2">
-              {todoLists.map(({id, content, state})=> (
-                <Task key={id} id={id} content={content} state={state} todoAction={setTodoLists} />
-              ))}
+          ) : filterValue === "incomplete" && todoListPreview.length === 0 ? (
+            // empty incomplete list container
+            <div className="border-t border-base-400 mt-6 flex flex-col justify-center items-center flex-1 gap-6 rounded-t-md">
+              <img src={clipboard} className="block max-w-full w-[2.5rem] sm:w-[3rem] md:w-[3.5rem] h-auto object-cover" alt="clipboard icon" />
+              <div className="flex flex-col gap-1">
+                <p className="text-xs sm:text-sm text-center text-base-300 font-bold">All your tasks are completed</p>
+                <p className="text-xs sm:text-sm text-center text-base-300 font-normal">Tap the cross icon to start creating your first task.</p>
+              </div>
             </div>
+          ) : filterValue === "complete" && todoListPreview.length === 0 ? (
+            // empty complete list container
+            <div className="border-t border-base-400 mt-6 flex flex-col justify-center items-center flex-1 gap-6 rounded-t-md">
+              <img src={clipboard} className="block max-w-full w-[2.5rem] sm:w-[3rem] md:w-[3.5rem] h-auto object-cover" alt="clipboard icon" />
+              <div className="flex flex-col gap-1">
+                <p className="text-xs sm:text-sm text-center text-base-300 font-bold">You do not have any complete tasks yet</p>
+                <p className="text-xs sm:text-sm text-center text-base-300 font-normal">Tap the blue ring on your task to check it as complete.</p>
+              </div>
+            </div>
+          ) : (
+                <div className="mt-6 flex flex-col gap-2">
+                  {todoListPreview.map(({id, content, state})=> (
+                    <Task key={id} id={id} content={content} state={state} todoAction={setTodoLists} />
+                  ))}
+                </div> 
           )
         }
       </section>
@@ -77,3 +108,6 @@ const Main = () => {
 }
 
 export default Main;
+
+
+
