@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 // components
 import Btn  from "./Btn";
@@ -19,7 +19,14 @@ const Modal = ({handleCloseModal, handleCreateTask}: modalProp) => {
     const [userTask, setUserTask] = useState(""); //state storing value from input field
     const [isLoading, setIsLoading] = useState(false);
 
-    // helper functions
+    
+
+    // focus on input field once modal is rendered
+    useEffect(()=>{
+        const input = document.getElementById("createTask_input");
+        input?.focus();
+    },[])
+
     const closeModal = ()=> {
         handleCloseModal(prev => !prev);
     }
@@ -63,6 +70,7 @@ const Modal = ({handleCloseModal, handleCreateTask}: modalProp) => {
 
             <div className="w-full">
                 <input 
+                    id="createTask_input"
                     value={userTask} 
                     onChange={(e)=> setUserTask(e.target.value)} 
                     type="text" 
