@@ -6,5 +6,6 @@ import Task from "./Task";
 import CheckFalse from "./CheckFalse";
 import CheckTrue from "./CheckTrue";
 import Filter from "./Filter";
+import EmptyListMessage from "./EmptyListMessage";
 
-export { IconBtn, Search, Modal, Btn, Task, CheckFalse, CheckTrue, Filter};
+export { IconBtn, Search, Modal, Btn, Task, CheckFalse, CheckTrue, Filter, EmptyListMessage};

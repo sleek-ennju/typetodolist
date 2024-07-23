@@ -35,3 +35,8 @@ export type modalProp = {
 export type filterProp = {
     handleFilterEffect: Dispatch<SetStateAction<string>>
 }
+
+export type emptyTodoList = {
+    title: string,
+    description: string
+}
