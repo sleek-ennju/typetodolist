@@ -81,7 +81,7 @@ const Modal = ({handleCloseModal, handleCreateTask}: modalProp) => {
                     <Btn action={closeModal} className={"bg-base-500 border border-purple-dark hover:border-purple-light text-purple-dark hover:text-purple-light"}>
                         Cancel
                     </Btn>
-                    <Btn action={createTask} disabled={userTask === "" ? true : false} className={"bg-purple-dark hover:bg-purple-light text-white flex items-center justify-center disabled:cursor-not-allowed disabled:bg-opacity-40"}>
+                    <Btn action={createTask} disabled={!userTask ? true : false} className={"bg-purple-dark hover:bg-purple-light text-white flex items-center justify-center disabled:cursor-not-allowed disabled:bg-opacity-40"}>
                         {isLoading ? <AiOutlineLoading3Quarters className="size-4 text-white animate-spin transition-all duration-300" /> : "Create"}
                     </Btn>
                 </div>

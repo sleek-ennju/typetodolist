@@ -1,15 +1,32 @@
 import { useState } from "react";
-import { IoSearch } from "react-icons/io5";
+
+// icons
+import { IoSearch, IoClose } from "react-icons/io5";
 
 
-const Search = () => {
+// type
+import { searchProp } from "../static/types";
+import classNames from "classnames";
+
+
+const Search = ({handleSearchEffect, handleClearSearchList, searchState}: searchProp) => {
   const [userKeyword, setUserKeyword] = useState("");
+
+  const clearSearch = ()=>{
+    setUserKeyword("");
+    handleClearSearchList();
+  }
+  
+  
 
   return (
     <div className="flex flex-grow gap-2 bg-base-500 rounded-md py-[0.4rem] px-2 w-fit">
+        <button onClick={clearSearch} className={classNames(searchState ? "block" : "hidden","group")}>
+          <IoClose className="text-base-300  size-[1.15rem] group-hover:text-danger transition-all duration-300"/>
+        </button>
         <input value={userKeyword} onChange={(e)=> setUserKeyword(e.target.value)} className="bg-transparent outline-none text-base-300 w-full placeholder:text-sm placeholder:text-base-300" placeholder="Search Todo Notes.." type="text" name="" id="" />
-        <button className="group">
-            <IoSearch className="text-base-300 size-[1.15rem] group-hover:text-base-200 transition-all duration-300" />
+        <button onClick={()=> handleSearchEffect(userKeyword)} className="group" disabled={!userKeyword ? true : false}>
+          <IoSearch className="text-base-300 size-[1.15rem] group-hover:text-base-200 group-disabled:cursor-not-allowed group-disabled:text-opacity-40 transition-all duration-300" />
         </button>
     </div>
   )

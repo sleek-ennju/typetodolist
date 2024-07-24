@@ -10,7 +10,7 @@ export type task = {
     id: string,
     content: string,
     state: boolean,
-    todoAction: Dispatch<SetStateAction<todo[]>>
+    todoAction: Dispatch<SetStateAction<todo[]>>,
 };
 
 export type iconButtonProp = {
@@ -34,6 +34,12 @@ export type modalProp = {
 
 export type filterProp = {
     handleFilterEffect: Dispatch<SetStateAction<string>>
+}
+
+export type searchProp = {
+    handleSearchEffect: (word:string)=> void ,
+    handleClearSearchList: ()=> void,
+    searchState: boolean
 }
 
 export type emptyTodoList = {

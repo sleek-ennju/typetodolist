@@ -15,6 +15,7 @@ const Main = () => {
   const [todoLists, setTodoLists] = useState<todo[]>([]); //state managing the main todo list
   const [todoListPreview, setTodoListsPreview] = useState<todo[]>([]); //state managing the filtered lists based on filter state
   const [filterValue, setFilterValue] = useState("all"); //state managing filter values(all, incomplete, complete)
+  const [searchState, setSearchState] = useState(false);
   
 
   // filter effect
@@ -26,7 +27,18 @@ const Main = () => {
       }else if(filterValue === "complete"){
         setTodoListsPreview(todoLists.filter(todo => todo.state))
       }
-  },[todoLists, filterValue])
+  },[todoLists, filterValue]);
+
+  const handleSearchRequest = (keyword:string) => {
+    const searchRequestResult = todoLists.filter(todo => todo.content.toLowerCase().includes(keyword.toLowerCase()));
+    setSearchState(true);
+    setTodoListsPreview(searchRequestResult);
+  }
+
+  const handleClearSearchRequest = ()=> {
+    setTodoListsPreview(todoLists);
+    setSearchState(false);
+  }
  
   
   
@@ -37,7 +49,7 @@ const Main = () => {
         {/* search, create todo action container */}
         <div className="flex gap-1 transform -translate-y-1/2">
           {/*search feature component  */}
-          <Search />
+          <Search searchState={searchState} handleSearchEffect={handleSearchRequest} handleClearSearchList={handleClearSearchRequest} />
 
           {/*open modal component  */}
           <IconBtn action={setOpenModal}>
@@ -62,14 +74,20 @@ const Main = () => {
 
         {/* todo lists display container */}
         {
-          filterValue === "all" && todoListPreview.length === 0 ? (
+          searchState === true && todoListPreview.length === 0 ? (
+            // empty search list container
+            <EmptyListMessage 
+              title="No current tasks registered with that term" 
+              description="Tap the cross icon to create a task." 
+            />
+          ) : filterValue === "all" && todoListPreview.length === 0 ? (
             // empty todo list container
             <EmptyListMessage 
               title="You do not have any tasks registered yet" 
               description="Tap the cross icon to start creating your first task." 
             />
             
-          ) : filterValue === "incomplete" && todoListPreview.length === 0 ? (
+          )  : filterValue === "incomplete" && todoListPreview.length === 0 ? (
             // empty incomplete list container
             <EmptyListMessage 
               title="All your tasks are completed" 
