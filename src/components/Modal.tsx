@@ -74,14 +74,14 @@ const Modal = ({handleCloseModal, handleCreateTask}: modalProp) => {
                     value={userTask} 
                     onChange={(e)=> setUserTask(e.target.value)} 
                     type="text" 
-                    className="bg-transparent border dark:border-base-300 border-base-400 rounded-md outline-none dark:text-base-300 text-base-400 w-full placeholder:text-sm placeholder:text-base-300 p-1" 
+                    className="bg-transparent border dark:border-base-300 border-base-400 rounded-md outline-none dark:text-base-300 text-base-400 w-full text-sm md:text-base placeholder:text-sm placeholder:text-base-300 p-1" 
                     placeholder="Enter new note.." 
                 />
                 <div className="flex justify-around flex-wrap gap-2 mt-4">
-                    <Btn action={closeModal} className={"dark:bg-base-500 bg-white border border-purple-dark hover:border-purple-light text-purple-dark hover:text-purple-light"}>
+                    <Btn action={closeModal} className={"tex-sm md:text-base dark:bg-base-500 bg-white border border-purple-dark hover:border-purple-light text-purple-dark hover:text-purple-light"}>
                         Cancel
                     </Btn>
-                    <Btn action={createTask} disabled={!userTask ? true : false} className={"bg-purple-dark hover:bg-purple-light text-white flex items-center justify-center disabled:cursor-not-allowed disabled:bg-opacity-40"}>
+                    <Btn action={createTask} disabled={!userTask ? true : false} className={"tex-sm md:text-base bg-purple-dark hover:bg-purple-light text-white flex items-center justify-center disabled:cursor-not-allowed disabled:bg-opacity-40"}>
                         {isLoading ? <AiOutlineLoading3Quarters className="size-4 text-white animate-spin transition-all duration-300" /> : "Create"}
                     </Btn>
                 </div>

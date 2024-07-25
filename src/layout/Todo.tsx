@@ -33,7 +33,7 @@ const Todo = () => {
         <Main />
 
         {/* dark mode switcher */}
-        <button onClick={handleDarkMode}  className='bg-purple-dark hover:bg-purple-light p-4 rounded-full fixed bottom-8 right-8'>
+        <button onClick={handleDarkMode}  className='bg-purple-dark hover:bg-purple-light p-2 sm:p-3 md:p-4 rounded-full fixed bottom-4 right-4'>
           {!darkMode ? <FaRegMoon className='size-4 text-white' /> : <MdOutlineWbSunny className='size-4 text-white'/> }
         </button>
     </div>

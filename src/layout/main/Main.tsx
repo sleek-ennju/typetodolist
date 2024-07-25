@@ -63,12 +63,12 @@ const Main = () => {
         {/* todo list counts container */}
         <div className="flex justify-between items-center flex-wrap gap-4 mt-6">
           <div className="flex items-center gap-1">
-            <h3 className="text-xs sm:text-sm font-bold text-blue-light">Tasks Created</h3>
-            <p className="text-xs sm:text-sm dark:text-base-200 text-base-400 dark:bg-base-400 bg-white dark:border-none border border-blue-dark rounded-full min-w-[1.2em] min-h-[1.2em] py-1 px-2 flex justify-center items-center">{todoLists.length}</p>
+            <h3 className="text-sm md:text-base font-bold text-blue-light">Tasks Created</h3>
+            <p className="text-sm md:text-base dark:text-base-200 text-base-400 dark:bg-base-400 bg-white dark:border-none border border-blue-dark rounded-full min-w-[1.2em] min-h-[1.2em] py-1 px-2 flex justify-center items-center">{todoLists.length}</p>
           </div>
           <div className="flex items-center gap-1">
-            <h3 className="text-xs sm:text-sm font-bold text-purple-light">Completed</h3>
-            <p className="text-xs sm:text-sm dark:text-base-200 text-base-400 dark:bg-base-400 bg-white dark:border-none border border-blue-dark rounded-full min-w-[1.2em] min-h-[1.2em] py-1 px-2 flex justify-center items-center">{todoLists.filter(todo => todo.state === true).length} of {todoLists.length}</p>
+            <h3 className="text-sm md:text-base font-bold text-purple-light">Completed</h3>
+            <p className="text-sm md:text-base dark:text-base-200 text-base-400 dark:bg-base-400 bg-white dark:border-none border border-blue-dark rounded-full min-w-[1.2em] min-h-[1.2em] py-1 px-2 flex justify-center items-center">{todoLists.filter(todo => todo.state === true).length} of {todoLists.length}</p>
           </div>
         </div>
 
