@@ -15,10 +15,10 @@ const Main = () => {
   const [todoLists, setTodoLists] = useState<todo[]>([]); //state managing the main todo list
   const [todoListPreview, setTodoListsPreview] = useState<todo[]>([]); //state managing the filtered lists based on filter state
   const [filterValue, setFilterValue] = useState("all"); //state managing filter values(all, incomplete, complete)
-  const [searchState, setSearchState] = useState(false);
+  const [searchState, setSearchState] = useState(false); //state indicating when a user has made a search
   
 
-  // filter effect
+  //  filter lists based on category effect
   useEffect(()=>{
       if(filterValue === "all"){
         setTodoListsPreview(todoLists);
@@ -64,11 +64,11 @@ const Main = () => {
         <div className="flex justify-between items-center flex-wrap gap-4 mt-6">
           <div className="flex items-center gap-1">
             <h3 className="text-xs sm:text-sm font-bold text-blue-light">Tasks Created</h3>
-            <p className="text-xs sm:text-sm text-base-200 bg-base-400 rounded-full min-w-[1.2em] min-h-[1.2em] py-1 px-2 flex justify-center items-center">{todoLists.length}</p>
+            <p className="text-xs sm:text-sm dark:text-base-200 text-base-400 dark:bg-base-400 bg-white dark:border-none border border-blue-dark rounded-full min-w-[1.2em] min-h-[1.2em] py-1 px-2 flex justify-center items-center">{todoLists.length}</p>
           </div>
           <div className="flex items-center gap-1">
             <h3 className="text-xs sm:text-sm font-bold text-purple-light">Completed</h3>
-            <p className="text-xs sm:text-sm text-base-200 bg-base-400 rounded-full min-w-[1.2em] min-h-[1.2em] py-1 px-2 flex justify-center items-center">{todoLists.filter(todo => todo.state === true).length} of {todoLists.length}</p>
+            <p className="text-xs sm:text-sm dark:text-base-200 text-base-400 dark:bg-base-400 bg-white dark:border-none border border-blue-dark rounded-full min-w-[1.2em] min-h-[1.2em] py-1 px-2 flex justify-center items-center">{todoLists.filter(todo => todo.state === true).length} of {todoLists.length}</p>
           </div>
         </div>
 
@@ -110,8 +110,8 @@ const Main = () => {
         }
       </section>
 
+      {/* create task modal */}
       {openModal && (<Modal handleCloseModal={setOpenModal} handleCreateTask={setTodoLists} />)}
-      
     </main>
   )
 }

@@ -16,4 +16,4 @@ const EmptyListMessage = ({title, description}: emptyTodoList) => {
   )
 }
 
-export default EmptyListMessage
+export default EmptyListMessage;
