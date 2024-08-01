@@ -42,7 +42,7 @@ const Main = () => {
   
   
   return (
-    <main className="w-full min-h-[70dvh] flex justify-center font-poppins">
+    <main className="w-full min-h-[70dvh] flex justify-center font-poppins pb-8">
       <section className="w-[90%] max-w-[34rem] flex flex-col">
 
         {/* search, create todo action container */}
