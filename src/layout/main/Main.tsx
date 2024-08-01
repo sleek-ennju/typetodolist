@@ -39,8 +39,7 @@ const Main = () => {
     setTodoListsPreview(todoLists);
     setSearchState(false);
   }
- 
-  console.log("todolist length: ", todoLists.length);
+  
   
   return (
     <main className="w-full min-h-[70dvh] flex justify-center font-poppins">
