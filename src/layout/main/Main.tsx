@@ -40,7 +40,7 @@ const Main = () => {
     setSearchState(false);
   }
  
-  
+  console.log("todolist length: ", todoLists.length);
   
   return (
     <main className="w-full min-h-[70dvh] flex justify-center font-poppins">
@@ -80,7 +80,7 @@ const Main = () => {
               title="No current tasks registered with that term" 
               description="Tap the cross icon to create a task." 
             />
-          ) : filterValue === "all" && todoListPreview.length === 0 ? (
+          ) : (filterValue === "all" || filterValue === "incomplete" || filterValue === "complete") && todoLists.length === 0 ? (
             // empty todo list container
             <EmptyListMessage 
               title="You do not have any tasks registered yet" 
